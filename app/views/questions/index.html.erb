@@ -1,4 +1,14 @@
-<h2>Most popular questions</h2>
+<%= form_for @search, :url => questions_path, :html => { :method => 'get' } do |f| %>
+  <%= f.label :label, 'List questions by' %>
+  <%= f.select :list_by, Question::LIST_METHOD_OPTIONS %>
+<% end %>
+
+<script>
+  $('#scoped_search_base_list_by').change(function () {
+    $(this).parents('form:first').submit();
+  });
+</script>
+
 <div id="question-list">
 	<%= render :partial => :question, :collection => @questions %>
 </div>

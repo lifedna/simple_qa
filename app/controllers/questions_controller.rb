@@ -2,7 +2,10 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @questions = Question.desc(:votes_point)
+    search_params = {'list_by' => 'best_voted'}.merge(params[:scoped_search_base] || {})
+    Rails.logger.info search_params.inspect
+    @search = Question.scoped_search(search_params.symbolize_keys)
+    @questions = @search.all
   end
 
   def new
@@ -11,7 +14,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
-    @question.user_id = current_user.id
+    @question.user = current_user
     
     if @question.save
       redirect_to question_path(@question), 

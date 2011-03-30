@@ -3,11 +3,13 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.0.5'
 
 gem 'mongoid', '~> 2.0.0'
-gem 'bson_ext', '~> 1.2'
+gem 'bson_ext'
 
-gem 'nifty-generators'
 gem 'voteable_mongoid'
-gem 'devise'
-gem 'jquery-rails'
+gem 'scoped-search', :require => 'scoped_search'
 gem 'mongoid_slug', :require => 'mongoid/slug'
 
+gem 'devise'
+
+gem 'jquery-rails'
+gem 'nifty-generators'
