@@ -15,5 +15,5 @@ class Question
   has_many :answers
   belongs_to :user
   
-  vote_point self, :up => +1, :down => -1
+  voteable self, :up => +1, :down => -1
 end

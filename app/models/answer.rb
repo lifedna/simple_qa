@@ -8,6 +8,6 @@ class Answer
   belongs_to :question
   belongs_to :user
   
-  vote_point self, :up => +1, :down => -2
-  vote_point Question, :up => +2, :down => -1
+  voteable self, :up => +1, :down => -2
+  voteable Question, :up => +2, :down => -1#, :update_counters => false # to skip up_votes_count, down_votes_count & votes_count update on Question
 end
