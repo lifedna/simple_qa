@@ -201,8 +201,13 @@ a.button {
   border-bottom: 1px dotted #999;
 }
 
+.form-field input {
+  width: 955px;
+}
+
 .form-field textarea {
-  width: 760px;
+  width: 955px;
+  height: 5em;
 }
 
 .answer {
