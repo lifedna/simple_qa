@@ -1,5 +1,5 @@
 <h2><%= @question.title %></h2>
-<p class="author">by <%= @question.user.email %>
+<p class="author">by <%= @question.user.try(:email) %>
 <p><%= @question.body %></p>
 
 <p class="summary-<%= @question.votes_point >= 0 ? :positive : :negative %>">
