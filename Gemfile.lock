@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/vinova/voteable_mongoid
+  revision: 2717a99545b6a4af63c13682a3590562a26334c1
+  specs:
+    voteable_mongoid (0.5.0)
+      mongoid (~> 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -87,8 +94,6 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.25)
-    voteable_mongoid (0.5.0)
-      mongoid (~> 2.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
@@ -97,12 +102,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
-  devise
-  jquery-rails
-  mongoid (~> 2.0.0)
-  mongoid_slug
-  nifty-generators
-  rails (~> 3.0.5)
-  scoped-search
-  voteable_mongoid
+  bson_ext (~> 1.2)
+  devise (~> 1.2)
+  jquery-rails (~> 0.2)
+  mongoid (~> 2.0)
+  mongoid_slug (~> 0.6)
+  nifty-generators (~> 0.4)
+  rails (~> 3.0)
+  scoped-search (~> 0.7)
+  voteable_mongoid (~> 0.5)!

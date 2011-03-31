@@ -18,11 +18,14 @@ class Question
   
   voteable self, :up => +1, :down => -1
 
-  LIST_METHODS = %w[most_up_voted most_down_voted most_voted best_voted]
-  LIST_METHOD_OPTIONS = LIST_METHODS.map{ |s| [s.humanize, s] }
-
-  scope :list_by, lambda { |method|
-    method = method.to_s
-    LIST_METHODS.include?(method) ? try(method) : self
-  }
+  index UP_VOTES_COUNT
+  index DOWN_VOTES_COUNT
+  index VOTES_COUNT
+  index VOTES_POINT
+  
+  %w[up_votes_count down_votes_count votes_count votes_point].each do |name|
+    field = "Mongoid::Voteable::#{name.upcase}".constantize
+    scope "ascend_by_#{name}", order_by([ field, :asc ])
+    scope "descend_by_#{name}", order_by([ field, :desc ])    
+  end
 end

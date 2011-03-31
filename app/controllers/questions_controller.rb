@@ -2,9 +2,7 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    search_params = {'list_by' => 'best_voted'}.merge(params[:scoped_search_base] || {})
-    Rails.logger.info search_params.inspect
-    @search = Question.scoped_search(search_params.symbolize_keys)
+    @search = Question.scoped_search(params[:search])
     @questions = @search.all
   end
 

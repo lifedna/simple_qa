@@ -1,13 +1,10 @@
-<%= form_for @search, :url => questions_path, :html => { :method => 'get' } do |f| %>
-  <%= f.label :label, 'List questions by' %>
-  <%= f.select :list_by, Question::LIST_METHOD_OPTIONS %>
-<% end %>
-
-<script>
-  $('#scoped_search_base_list_by').change(function () {
-    $(this).parents('form:first').submit();
-  });
-</script>
+<div>
+  Order by
+  <%= link_to "Point", order_for_scoped_search(:votes_point) %> |
+  <%= link_to "Votes", order_for_scoped_search(:votes_count) %> |
+  <%= link_to "Up votes", order_for_scoped_search(:up_votes_count) %> |
+  <%= link_to "Down votes", order_for_scoped_search(:down_votes_count) %>
+</div>
 
 <div id="question-list">
 	<%= render :partial => :question, :collection => @questions %>
