@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/vinova/voteable_mongoid
+  revision: 69e41215f5aca3087743c225c698deef5634540f
+  specs:
+    voteable_mongoid (0.6.0)
+      mongoid (~> 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -89,8 +96,6 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.25)
-    voteable_mongoid (0.6.0)
-      mongoid (~> 2.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
@@ -108,4 +113,4 @@ DEPENDENCIES
   nifty-generators (~> 0.4)
   rails (~> 3.0)
   scoped-search (~> 0.7)
-  voteable_mongoid (~> 0.6)
+  voteable_mongoid (~> 0.6)!
