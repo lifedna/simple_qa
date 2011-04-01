@@ -8,7 +8,9 @@ class Question
   field :title, :type => String
   field :body, :type => String
 
-  slug :title
+  slug :title, 
+    :permanent => true, # Don't change slug in the future
+    :index => true
   
   validates :title, :presence => true, :length => { :minimum => 10 }
   validates :body, :presence => true 
