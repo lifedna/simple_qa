@@ -20,8 +20,6 @@ class Question
   
   voteable self, :up => +1, :down => -1
     
-  field :answers_count, :type => Integer, :default => 0
-
   def self.inc_counter(id, field, value)
     collection.update({ '_id' => id }, {
       '$inc' => { field => value }
