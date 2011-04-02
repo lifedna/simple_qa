@@ -19,15 +19,27 @@ class Question
   belongs_to :user
   
   voteable self, :up => +1, :down => -1
+    
+  field :answers_count, :type => Integer, :default => 0
 
-  index UP_VOTES_COUNT
-  index DOWN_VOTES_COUNT
+  def self.inc_counter(id, field, value)
+    collection.update({ '_id' => id }, {
+      '$inc' => { field => value }
+    })
+  end
+    
+  def answers_count
+    unless count = read_attribute('answers_count')
+      count = answers.count
+      write_attribute('answers_count', count)
+      Question.inc_counter(id, 'answers_count', count)
+    end
+    count
+  end
+
   index VOTES_COUNT
   index VOTES_POINT
-  
-  %w[up_votes_count down_votes_count votes_count votes_point].each do |name|
-    field = "Mongoid::Voteable::#{name.upcase}".constantize
-    scope "ascend_by_#{name}", order_by([ field, :asc ])
-    scope "descend_by_#{name}", order_by([ field, :desc ])    
-  end
+  index [[:answers_count, -1]]
+
+  scoped_order VOTES_POINT, VOTES_COUNT, :answers_count
 end

@@ -1,7 +1,8 @@
 <div>
-  Order by
-  <%= link_to "Votes", order_for_scoped_search(:votes_count) %> |
-  <%= link_to "Point", order_for_scoped_search(:votes_point) %>
+  <%= link_to "Votes", order_for_scoped_search(:votes_c) %> &nbsp;|&nbsp;
+  <%= link_to "Point", order_for_scoped_search(:votes_p) %> &nbsp;|&nbsp;
+  <%= link_to "Answers", order_for_scoped_search(:answers_count) %>
+  
 </div>
 
 <div id="question-list">
