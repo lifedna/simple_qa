@@ -35,8 +35,8 @@ class Question
     count
   end
 
-  index VOTES_COUNT
-  index VOTES_POINT
+  index [[VOTES_COUNT, -1]]
+  index [[VOTES_POINT, -1]]
   index [[:answers_count, -1]]
 
   scoped_order VOTES_POINT, VOTES_COUNT, :answers_count
