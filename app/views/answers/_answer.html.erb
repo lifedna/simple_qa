@@ -1,5 +1,5 @@
 <div class="answer">
-  <p class="header">by <%= answer.user.try(:email) %> on <%= answer.created_at %></p>
+  <p class="header">by <%= answer.user_email %> on <%= answer.created_at %></p>
   <p class="content"><%= answer.content %></p>
   <p class="summary-<%= answer.votes_point >= 0 ? :positive : :negative %>">
     <%= answer.up_votes_count %> up votes, <%= answer.down_votes_count %> down votes, <%= answer.votes_point %> points for this answer.

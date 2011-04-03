@@ -18,6 +18,8 @@ class Question
   has_many :answers
   belongs_to :user
   
+  delegate :email, :to => :user, :allow_nil => true, :prefix => true
+  
   voteable self, :up => +1, :down => -1
     
   def self.inc_counter(id, field, value)
