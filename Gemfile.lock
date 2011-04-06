@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/vinova/voteable_mongoid
-  revision: eca5beec96a2cc7313f08fb21be773237345d912
+  revision: 3e0b6a0f27bcf645b8489f553ad611b8d126f1ec
   specs:
     voteable_mongoid (0.7.2)
       mongoid (~> 2.0.0)
