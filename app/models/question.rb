@@ -12,7 +12,7 @@ class Question
     :permanent => true, # Don't change slug in the future
     :index => true
   
-  validates :title, :presence => true, :length => { :minimum => 10 }
+  validates :title, :presence => true, :length => { :minimum => 5 }
   validates :body, :presence => true 
   
   has_many :answers
