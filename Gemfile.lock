@@ -4,6 +4,13 @@ GIT
   specs:
     scoped-search (0.7.1)
 
+GIT
+  remote: git://github.com/vinova/voteable_mongoid
+  revision: eca5beec96a2cc7313f08fb21be773237345d912
+  specs:
+    voteable_mongoid (0.7.2)
+      mongoid (~> 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -67,7 +74,6 @@ GEM
     mongoid_slug (0.7.1)
       mongoid (~> 2.0.0)
       stringex (~> 1.2.0)
-    nifty-generators (0.4.6)
     orm_adapter (0.0.4)
     polyglot (0.3.1)
     rack (1.2.2)
@@ -94,8 +100,6 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
-    voteable_mongoid (0.7.2)
-      mongoid (~> 2.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
@@ -104,13 +108,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext (~> 1.2)
-  client_side_validations (~> 3.0)
-  devise (~> 1.2)
-  jquery-rails (~> 0.2)
-  mongoid (~> 2.0)
-  mongoid_slug (~> 0.6)
-  nifty-generators (~> 0.4)
-  rails (~> 3.0)
-  scoped-search (~> 0.7)!
-  voteable_mongoid (~> 0.7)
+  bson_ext
+  client_side_validations
+  devise
+  jquery-rails
+  mongoid
+  mongoid_slug
+  rails
+  scoped-search!
+  voteable_mongoid!

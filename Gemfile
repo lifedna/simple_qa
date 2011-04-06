@@ -1,16 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0'
+gem 'rails'
 
-gem 'mongoid', '~> 2.0'
-gem 'bson_ext', '~> 1.2'
+gem 'mongoid'
+gem 'bson_ext'
 
-gem 'voteable_mongoid', '~> 0.7'
-gem 'scoped-search', '~> 0.7', :require => 'scoped_search', :git => 'git://github.com/vinova/scoped-search'
-gem 'mongoid_slug', '~> 0.6', :require => 'mongoid/slug'
-gem 'devise', '~> 1.2'
+gem 'voteable_mongoid', :git => 'git://github.com/vinova/voteable_mongoid'
+gem 'scoped-search', :require => 'scoped_search', :git => 'git://github.com/vinova/scoped-search'
+gem 'mongoid_slug', :require => 'mongoid/slug'
+gem 'devise'
 
-gem 'jquery-rails', '~> 0.2'
-gem 'client_side_validations', '~> 3.0'
-
-gem 'nifty-generators', '~> 0.4'
+gem 'jquery-rails'
+gem 'client_side_validations'
