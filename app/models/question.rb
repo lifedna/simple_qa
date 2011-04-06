@@ -36,8 +36,16 @@ class Question
     end
     count
   end
+  
+  # Compound index _id and voters.up, _id and voters.down
+  # to make up_voted_by, down_voted_by, voted_by scopes and voting faster
+  index [['votes.up', 1], ['_id', 1]]
+  index [['votes.down', 1], ['_id', 1]]
 
+  # Index counters and point for desc ordering
   index [['votes.count', -1]]
+  index [['votes.up_count', -1]]
+  index [['votes.down_count', -1]]
   index [['votes.point', -1]]
   index [['answers_count', -1]]
 
