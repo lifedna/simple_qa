@@ -2,7 +2,9 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @search = Question.scoped_search(params[:search])
+    search_params = (params[:search] || {}).clone
+    search_params[:descend_by_votes_point] ||= true
+    @search = Question.scoped_search(search_params)
     @questions = @search.all
   end
 

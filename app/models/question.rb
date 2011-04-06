@@ -49,5 +49,5 @@ class Question
   index [['votes.point', -1]]
   index [['answers_count', -1]]
 
-  scoped_order 'votes.count', 'votes.point', 'answers_count'
+  scoped_order 'votes.count', 'votes.up_count', 'votes.down_count', 'votes.point', 'answers_count'
 end

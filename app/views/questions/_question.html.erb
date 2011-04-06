@@ -5,6 +5,20 @@
 		</div>
 		<div>Votes</div>
 	</div>
+
+	<div class="votes-count">
+		<div class="count">
+			<%= question.up_votes_count %>
+		</div>
+		<div>Up</div>
+	</div>
+
+	<div class="votes-count">
+		<div class="count">
+			<%= question.down_votes_count %>
+		</div>
+		<div>Down</div>
+	</div>
 	
 	<div class="votes-point <%= question.votes_point >= 0 ? :positive : :negative %>">
 		<div class="count">

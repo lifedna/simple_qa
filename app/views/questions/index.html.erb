@@ -1,6 +1,9 @@
 <div>
-  <%= link_to "Votes", order_for_scoped_search(:votes_count) %> &nbsp;|&nbsp;
-  <%= link_to "Point", order_for_scoped_search(:votes_point) %> &nbsp;|&nbsp;
+  &nbsp;&nbsp;
+  <%= link_to "Votes", order_for_scoped_search(:votes_count) %> &nbsp;|&nbsp;&nbsp;&nbsp;
+  <%= link_to "Up", order_for_scoped_search(:votes_up_count) %> &nbsp;&nbsp;|&nbsp;
+  <%= link_to "Down", order_for_scoped_search(:votes_down_count) %> |
+  <%= link_to "Point", order_for_scoped_search(:votes_point) %> |
   <%= link_to "Answers", order_for_scoped_search(:answers_count) %>
   
 </div>
