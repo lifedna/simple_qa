@@ -16,4 +16,14 @@ test:
 
 # set these environment variables on your prod server
 production:
+  <% if ENV['MONGOHQ_URL'] %>
   uri: <%= ENV['MONGOHQ_URL'] %>
+  <% elsif ENV['VCAP_SERVICES'] && 
+       credentials = JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials'] %>
+  <<: *defaults
+  host: <%= credentials['hostname'] %>
+  port: <%= credentials['port'] %>
+  database: <%= credentials['db'] %>
+  username: <%= credentials['username'] %>
+  password: <%= credentials['password'] %>
+  <% end %>
