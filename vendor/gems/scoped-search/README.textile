@@ -1,0 +1,163 @@
+h1. ScopedSearch
+
+ScopedSearch is a plugin to easily create search forms and do column ordering.
+It is written specifically for Rails 3 and is compatible with both ActiveRecord and "Mongoid":http://www.mongoid.org.
+
+ScopeSearch is Copyright (c) 2010 Novagile, written by "Nicolas Blanco":http://github.com/slainer68
+
+h2. Philosophy
+
+I've begun writing this plugin because I really like "Searchlogic":http://github.com/binarylogic/searchlogic from "Ben Johnson":http://www.binarylogic.com.
+I was using it in all my Rails 2 Active Record projects.
+
+Searchlogic has a feature that dynamically adds a lot of scopes in your models. But a feature from Searchlogic I really like is the ability to create an object
+that binds to your models scopes and being able to use it directly in a form. You can add many fields in your search forms, and the controller stays
+the same. I really wanted the same behaviour in Rails 3 and compatible with both ActiveRecord and Mongoid.
+
+h2. Installation
+
+For now, ScopedSearch is under development.
+You may use it as plugin or as a gem.
+
+**Gem**
+
+Edit your Gemfile and add :
+
+<pre>
+  gem 'scoped-search', :require => "scoped_search"
+</pre>
+
+**Plugin**
+
+<pre>
+  rails plugin install git://github.com/novagile/scoped-search.git
+</pre>
+
+ScopedSearch does not dynamically include itself in ActiveRecord or Mongoid, you have to include it in your models where you want to use it.
+
+Simply include the ScopedSearch::Model module in your models like this...
+
+<pre>
+  class Post < ActiveRecord::Base
+    include ScopedSearch::Model
+  
+    scope :retrieve, lambda { |q| where("title like ?", "%#{q}%") }
+    scope :state_equals, lambda { |state| where( {:state => state }) }
+    scope :published, where(:published => true)
+    ...
+</pre>
+
+In your ApplicationHelper, include the ScopedSearch::Helpers module :
+
+<pre>
+  module ApplicationHelper
+    include ScopedSearch::Helpers
+  end
+</pre>
+
+h2. Console testing
+
+You can test the search object in a console!
+
+<pre>
+  > search = Post.scoped_search
+   => #<ScopedSearch::Base...>
+  > search.count
+   => 4
+  > search.all.map(&:body)
+   => ["test", "lalala", "foo", "bar"] 
+  > search.retrieve = "foo"
+   => "foo"
+  > search.count
+   => 1 
+  > search.all
+   => [#<Post id: 3, title: nil, body: "foo"...]
+</pre>
+
+h2. Usage
+
+Then in your controller you can do like this :
+
+<pre>
+  class PostsController < ApplicationController
+    def index
+      @search = Post.scoped_search(params[:search])
+      @posts = @search.all # or @search.paginate(...), or you can even continue the scope chain ! Just add your scopes like this : @search.build_relation.other_scope.other_other_scope... :)
+      ...
+</pre>
+
+In your view, you can create a form that takes your search object as parameter, like this :
+
+<pre>
+  <%= form_for @search do |f| %>
+    <%= f.text_field :retrieve %>
+    <%= f.select :state_equals, ["pending", "accepted", "deleted"] %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</pre>
+
+h2. Column ordering
+
+You want to get column ordering for free? Sure!
+In your model, use the scoped_order method like this :
+
+<pre>
+  class Post < ActiveRecord::Base
+    ...
+    scoped_order :title, created_at, :updated_at # , ...
+    ...
+</pre>
+
+It will add two scopes for each column, named "ascend_by_column_name" and "descend_by_column_name" (like Searchlogic).
+
+Then in your views, you may use the order_for_scoped_search view helper like this :
+
+<pre>
+  <table>
+    <tr>
+      <th><%= link_to "Title", order_for_scoped_search(:title) %></th>
+      ...
+</pre>
+
+h2. Scopes with no arguments and excluded scopes
+
+If a scope attribute in the ScopedSearch object has a value that equals to "true", the scope will be chained without any parameters.
+If the scope attribute has a value that is blank? or equals to "false", the scope will be rejected and won't be chained in the search.
+
+Example :
+
+<pre>
+  search = User.scoped_search({ :accepted => "true", :rejected => "", :refused => "false", :has_email => ["foo@bar.com", "bar@foo.com"] })
+
+  search.all # => results in User.accepted.has_email(["foo@bar.com", "bar@foo.com"])
+</pre>
+
+h2. Issue with single Array attribute and multi parameters scopes
+
+When you define a scope, you may define it with a single value that accepts an array, or as a multi parameters scope.
+But I haven't found an easy way yet to know the number of parameters a scope accepts (if you know, please tell me!).
+So, for now, if you pass an array to a scoped attribute, it will be passed as an array to the scope.
+If you set attributename_multi_params to true, it will be passed as multiple params to the scope.
+
+Example :
+
+<pre>
+  class Post < ActiveRecord::Base
+    scope :retrieve_in_title_and_body, lambda { |a, b| where("title like ? and body like ?", "%#{a}%", "%#{b}") }
+    scope :retrieve_ids, lambda { |ids| where(:id => ids) }
+  end
+  
+  # For a multi params scope
+  #
+  > search = Post.scoped_search
+  > search.retrieve_in_title_and_body = ["test", "whaaaa"]
+  > search.retrieve_in_title_and_body_multi_params = true
+  
+  # For an Array param
+  > search.retrieve_ids = [1,2,3]  
+</pre>
+
+h2. Notes
+
+This plugin is new and under development, patches and contributions are welcome! Please fork and make pull requests, thanks!
+
