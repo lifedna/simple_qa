@@ -41,7 +41,7 @@
 <% if @question.answers_count == 0 %>
   There is no answers yet.
 <% else %>
-  <% @question.answers.order(:votes_point).each do |answer| %>
+  <% @question.answers.order('votes.point').each do |answer| %>
     <%= render :partial => "answers/answer", :object => answer %>
   <% end %>
 <% end %>
