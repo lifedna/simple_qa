@@ -92,7 +92,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
-    voteable_mongoid (0.7.2)
+    voteable_mongoid (0.7.3)
       mongoid (~> 2.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
