@@ -1,7 +1,7 @@
 class Question
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Voteable
+  include Mongo::Voteable
   include Mongoid::Slug
   include ScopedSearch::Model
   

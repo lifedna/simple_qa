@@ -1,7 +1,7 @@
 class Answer
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Voteable
+  include Mongo::Voteable
   
   field :content, :type => String
   
