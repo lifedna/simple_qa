@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
   
   def index
     @questions = Question.all
+    render :index, :layout => "questions_index"
   end
 
   def new

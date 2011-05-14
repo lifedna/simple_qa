@@ -31,6 +31,16 @@
       <%= content_tag :h1, yield(:title) if show_title? %>
 
       <!-- content -->
+      <%= form_tag search_questions_path do %>
+        <%= text_field_tag :keywords, "" %>
+        <% if current_user %>
+          <%= link_to "Ask new question", new_question_path, :id => "ask" %>
+        <% else %>
+          <br />
+          Please <%= link_to "login", new_user_session_path %> to ask question.
+        <% end %>
+      <% end %>
+
       <div id="content">
         <%= yield %>
       </div>
