@@ -2,25 +2,23 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    search_params = (params[:search] || {}).clone
-    search_params[:descend_by_votes_point] ||= true
-    @search = Question.scoped_search(search_params)
-    @questions = @search.all
+    @questions = Question.all
   end
 
   def new
     @question = Question.new
+    @question.title = params[:keywords]
+    render :new, :layout => false
   end
 
   def create
-    @question = Question.new(params[:question])
-    @question.user = current_user
+    @question = current_user.questions.build(params[:question])
     
     if @question.save
-      redirect_to question_path(@question), 
-                  :notice => "Your question has been submitted successfully!"
+      flash[:notice] = "Your question has been submitted successfully!"
+      render :json => { :action => 'redirect', :url => question_path(@question) }
     else
-      render "new"
+      render :json => { :action => 'replace_html', :html => render_to_string('new', :layout => false) }
     end
   end
 
@@ -70,7 +68,12 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    @questions = Question.search(params[:keywords])
+    keywords = params[:keywords] ||= ""
+    if keywords.strip.blank?
+      @questions = Question.all
+    else
+      @questions = Question.search(params[:keywords])
+    end
     render :index, :layout => false
   end
 end

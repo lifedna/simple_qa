@@ -3,6 +3,8 @@
   <head>
     <title>Q&A using votable_mongoid gem</title>
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "fancybox" %>
+
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -34,7 +36,7 @@
       <!-- content -->
       <%= form_tag search_questions_path do %>
         <%= text_field_tag :keywords, "" %>
-        <%= link_to "Ask", "#", :id => "ask" %>
+        <%= link_to "Ask", new_question_path, :id => "ask" %>
       <% end %>
 
       <div id="content">
