@@ -16,4 +16,3 @@ gem 'uglifier'
 gem 'devise'
 
 gem 'jquery-rails'
-gem 'client_side_validations'
