@@ -188,14 +188,6 @@ p.author {
   font-style: italic;
 }
 
-a.button {
-  background: #555;
-  color: white;
-  padding: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
-}
-
 #nav {
   padding-bottom: 20px;
   border-bottom: 1px dotted #999;
@@ -235,3 +227,26 @@ a.button {
 div.field_with_errors div.ui-effects-wrapper {
   display: inline-block !important;
 }
+
+#keywords {
+  border: 1px solid #DDD;
+  -moz-border-radius: 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-left: 8px;
+  width: 300px;
+  margin-left: 10px;
+  height: 28px;
+}
+
+a#ask {
+  background: #555;
+  color: white;
+  padding: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  height: 28px;
+  font-size: 16px;
+}
+
+span {margin-left: 11px}
