@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', "~> 3.1.beta.1"
 
-gem 'mongoid'
+gem 'mongoid', :git => "https://github.com/mongoid/mongoid.git"
 gem 'bson_ext'
 gem 'voteable_mongo'
 gem 'scoped-search', :require => 'scoped_search', :path => 'vendor/gems/scoped-search'

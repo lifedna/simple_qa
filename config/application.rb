@@ -10,5 +10,6 @@ module SimpleQa
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails rails.validations)
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
+    config.assets.enabled = true
   end
 end
