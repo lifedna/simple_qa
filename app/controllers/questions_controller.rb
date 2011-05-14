@@ -68,4 +68,9 @@ class QuestionsController < ApplicationController
     current_user.vote(@question, :down)
     redirect_to question_path(@question), :notice => "Your vote down is successfully submitted."
   end
+
+  def search
+    @questions = Question.search(params[:keywords])
+    render :index, :layout => false
+  end
 end

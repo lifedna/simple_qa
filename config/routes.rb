@@ -5,6 +5,10 @@ SimpleQa::Application.routes.draw do
       get :vote_down
       get :unvote
     end
+
+    collection do
+      post :search
+    end
     
     resources :answers do
       member do
