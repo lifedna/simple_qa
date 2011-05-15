@@ -19,7 +19,7 @@ class Question
   has_many :answers
   belongs_to :user
 
-  search_in :title, :body, :answers => :content, :user => :email
+  search_in :title, :body#, :answers => :content, :user => :email
   
   delegate :email, :to => :user, :allow_nil => true, :prefix => true
   
